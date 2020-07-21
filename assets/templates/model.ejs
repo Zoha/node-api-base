@@ -1,0 +1,10 @@
+const mongoose = require("mongoose")
+const loadModelStatics = require("@utils/loadModelStatics")
+const loadModelMethods = require("@utils/loadModelMethods")
+
+const <%= model %>Schema = require("./<%= model %>/<%= model %>Schema")
+
+loadModelMethods(<%= model %>Schema, __dirname, "<%= model %>/methods")
+loadModelStatics(<%= model %>Schema, __dirname, "<%= model %>/statics")
+
+module.exports = mongoose.model("<%= Model %>", <%= model %>Schema)

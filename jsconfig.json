@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["node_modules/*"],
+      "@assets/*": ["assets/*"],
+      "@schemas/*": ["schemas/*"],
+      "@enums/*": ["enums/*"],
+      "@commands/*": ["commands/*"],
+      "@middleware/*": ["middleware/*"],
+      "@models/*": ["models/*"],
+      "@routes/*": ["routes/*"],
+      "@tests/*": ["tests/*"],
+      "@utils/*": ["utils/*"],
+      "@config": ["config"],
+      "@root/*": ["./*"],
+      "@constants/*": ["constants/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
