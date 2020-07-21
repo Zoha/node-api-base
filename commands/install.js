@@ -1,11 +1,12 @@
 const path = require("path")
 const fs = require("fs")
 const chalk = require("chalk")
+const del = require("del")
 
 module.exports = {
   command: "install <appName>",
   options: ["-j, --just-env"],
-  action(appName, ctx) {
+  async action(appName, ctx) {
     appName = appName.toLowerCase()
     const packageJsonFilePath = path.join(__dirname, "../package.json")
     const envExampleFilePath = path.join(__dirname, "../.env.example")
@@ -41,6 +42,8 @@ module.exports = {
       )
 
       console.log(chalk.green("app name setting done"))
+
+      await del(path.join(__dirname, "../.git"))
     }
 
     fs.copyFileSync(envExampleFilePath, envFilePath)

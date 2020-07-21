@@ -12,14 +12,14 @@
     "test": "cross-env NODE_ENV=test mocha ./tests/**/*.test.js --exit",
     "lint": "cross-env NODE_ENV=test mocha ./tests/lint.js --exit",
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "install": "node command install"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "change-case": "^4.1.1",
     "commander": "^5.1.0",
+    "del": "^5.1.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "eslint-import-resolver-node": "^0.3.4",
