@@ -11,8 +11,9 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./tests/**/*.test.js --exit",
     "lint": "cross-env NODE_ENV=test mocha ./tests/lint.js --exit",
-    "start": "cross-env node index.js",
-    "dev": "cross-env nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "install": "node command install"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
