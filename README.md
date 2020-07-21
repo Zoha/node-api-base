@@ -2,10 +2,12 @@
 
 - change NODE_ENV of app to production
 
-## installation
+## first init installation (for dev)
 
-clone and execute this command
+clone and execute this commands
 
-`node command install <appName>`
+`$ yarn install`
+
+`$ node command install <appName>`
 
 replace your app name
