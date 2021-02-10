@@ -20,13 +20,13 @@ module.exports = {
     }))
 
     if (fs.existsSync(newEnumFilePath)) {
-      console.log(chalk.red("this enum already exists"))
+      console.info(chalk.red("this enum already exists"))
       return false
     }
     fs.writeFileSync(
       newEnumFilePath,
       await formatCode(ejs.render(fs.readFileSync(enumTemplatePath, "utf-8"), { items }))
     )
-    console.log(chalk.green("enum created"))
+    console.info(chalk.green("enum created"))
   }
 }

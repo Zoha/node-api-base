@@ -11,7 +11,7 @@ if (fs.existsSync(envFilePath)) {
     path: envFilePath
   })
 } else {
-  console.log(chalk.yellow("env file not exists. app will use `.env.example` instead"))
+  console.info(chalk.yellow("env file not exists. app will use `.env.example` instead"))
   dotenv.config({
     path: envExampleFilePath
   })

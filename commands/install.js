@@ -41,13 +41,13 @@ module.exports = {
           .replace('27017/base"', `27017/${appName}"`)
       )
 
-      console.log(chalk.green("app name setting done"))
+      console.info(chalk.green("app name setting done"))
 
       await del(path.join(__dirname, "../.git"))
     }
 
     fs.copyFileSync(envExampleFilePath, envFilePath)
 
-    console.log(chalk.green("env.example file copied"))
+    console.info(chalk.green("env.example file copied"))
   }
 }

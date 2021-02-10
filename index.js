@@ -3,21 +3,22 @@ const express = require("express")
 const chalk = require("chalk")
 const loadFilesIn = require("@utils/loadFilesIn")
 const config = require("@config")
+const environments = require("@enums/environments")
 
 const app = express()
 const port = config.port
 
 // load init files
-loadFilesIn(__dirname, "utils/init")
+loadFilesIn(__dirname, "utils/init", { data: [app] })
 
 // load all models
 loadFilesIn(__dirname, "models")
 
 app.use(require("./routes"))
 
-if (config.nodeEnv !== "test") {
+if (config.nodeEnv !== environments.test) {
   app.listen(port, () => {
-    console.log(chalk.green(`app is running on port ${3000}`))
+    console.info(chalk.green(`app is running on port ${port}`))
   })
 }
 

@@ -11,7 +11,7 @@ module.exports = (err, req, res, next) => {
   }
 
   if (config.nodeEnv !== "production") {
-    console.log(err)
+    console.info(err)
   }
 
   if (!res.headersSent) {

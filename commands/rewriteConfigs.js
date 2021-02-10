@@ -52,6 +52,6 @@ module.exports = {
         )
       )
     )
-    console.log(chalk.green("config file updated"))
+    console.info(chalk.green("config file updated"))
   }
 }

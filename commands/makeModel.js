@@ -30,7 +30,7 @@ module.exports = {
     ]
 
     if (fs.existsSync(modelFilePath) || fs.existsSync(modelSchemaFilePath)) {
-      console.log(chalk.red("model or schema file already exists"))
+      console.info(chalk.red("model or schema file already exists"))
       return false
     }
 
@@ -49,6 +49,6 @@ module.exports = {
       await formatCode(ejs.render(fs.readFileSync(modelSchemaTemplatePath, "utf-8"), data))
     )
 
-    console.log(chalk.green(data.model + " model created"))
+    console.info(chalk.green(data.model + " model created"))
   }
 }
