@@ -7,4 +7,8 @@ const <%= model %>Schema = require("./<%= model %>/<%= model %>Schema")
 loadModelMethods(<%= model %>Schema, __dirname, "<%= model %>/methods")
 loadModelStatics(<%= model %>Schema, __dirname, "<%= model %>/statics")
 
+/**
+ * @typedef {mongoose.Document & <%= model %>Schema.properties} <%= Model %>
+ */
+
 module.exports = mongoose.model("<%= Model %>", <%= model %>Schema)

@@ -14,7 +14,7 @@ module.exports = {
       model: pluralize.singular(modelName),
       Model: ucfirst(pluralize.singular(modelName))
     }
-    const modelFilePath = path.join(__dirname, "../models/", data.model + ".js")
+    const modelFilePath = path.join(__dirname, "../models/", data.Model + ".js")
     const modelSchemaFilePath = path.join(
       __dirname,
       "../models/",
@@ -35,7 +35,11 @@ module.exports = {
     }
 
     // create directories
-    modelDirectories.forEach(dir => fs.mkdirSync(dir))
+    modelDirectories.forEach(dir => {
+      fs.mkdirSync(dir)
+      const gitKeepPath = path.join(__dirname, "../assets/templates/.gitkeep")
+      fs.copyFileSync(gitKeepPath, path.join(dir, ".gitkeep"))
+    })
 
     // create model file
     fs.writeFileSync(

@@ -1,4 +1,5 @@
 const config = require("@config")
+const chalk = require("chalk")
 
 module.exports = (err, req, res, next) => {
   let data = {
@@ -11,7 +12,7 @@ module.exports = (err, req, res, next) => {
   }
 
   if (config.nodeEnv !== "production") {
-    console.info(err)
+    console.info(chalk.red(err.message))
   }
 
   if (!res.headersSent) {
