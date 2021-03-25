@@ -19,6 +19,7 @@ module.exports = {
     }
     const envExampleFileContent = fs.readFileSync(envExampleFilePath, "utf-8")
 
+    /** @type {Array.<{key : string , value: any , originalKey? : string}>} */
     let configs = lodash.uniqBy(
       [...envFileContent.split("\n"), ...envExampleFileContent.split("\n")]
         .map(i => i.replace("\r", ""))

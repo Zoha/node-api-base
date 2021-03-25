@@ -1,7 +1,4 @@
 {
-  "cSpell.words": [
-    "gitkeep",
-    "ucfirst"
-  ],
+  "cSpell.words": ["gitkeep", "ucfirst"],
   "js/ts.implicitProjectConfig.checkJs": true
 }
