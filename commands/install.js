@@ -7,6 +7,9 @@ module.exports = {
   command: "install <appName>",
   options: ["-j, --just-env"],
   async action(appName, ctx) {
+    if (fs.existsSync(path.join(__dirname, "../index.js"))) {
+      console.info(chalk.red("index.js file already exists"))
+    }
     appName = appName.toLowerCase()
     const packageJsonFilePath = path.join(__dirname, "../package.json")
     const envExampleFilePath = path.join(__dirname, "../.env.example")

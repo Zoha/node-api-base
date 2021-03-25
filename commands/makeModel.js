@@ -15,22 +15,22 @@ module.exports = {
       Model: ucfirst(pluralize.singular(modelName))
     }
     const modelFilePath = path.join(__dirname, "../models/", data.Model + ".js")
-    const modelSchemaFilePath = path.join(
+    const modelFieldsFilePath = path.join(
       __dirname,
       "../models/",
       data.model,
-      data.model + "Schema.js"
+      data.model + "Fields.js"
     )
     const modelTemplatePath = path.join(__dirname, "../assets/templates/model.mustache")
-    const modelSchemaTemplatePath = path.join(__dirname, "../assets/templates/modelSchema.mustache")
+    const modelSchemaTemplatePath = path.join(__dirname, "../assets/templates/modelFields.mustache")
     const modelDirectories = [
       path.join(__dirname, "../models/", data.model),
       path.join(__dirname, "../models/", data.model, "statics"),
       path.join(__dirname, "../models/", data.model, "methods")
     ]
 
-    if (fs.existsSync(modelFilePath) || fs.existsSync(modelSchemaFilePath)) {
-      console.info(chalk.red("model or schema file already exists"))
+    if (fs.existsSync(modelFilePath) || fs.existsSync(modelFieldsFilePath)) {
+      console.info(chalk.red("model or modelFields file already exists"))
       return false
     }
 
@@ -47,9 +47,9 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(modelTemplatePath, "utf-8"), data))
     )
 
-    // create schema
+    // create fields file
     fs.writeFileSync(
-      modelSchemaFilePath,
+      modelFieldsFilePath,
       await formatCode(mustache.render(fs.readFileSync(modelSchemaTemplatePath, "utf-8"), data))
     )
 

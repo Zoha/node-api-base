@@ -1,0 +1,6 @@
+const router = require("express").Router()
+const {{schema}}Schema = require("@schemas/{{schema}}Schema")
+
+router.use({{schema}}Schema.resource())
+
+module.exports = router
