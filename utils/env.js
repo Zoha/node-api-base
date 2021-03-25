@@ -31,5 +31,9 @@ module.exports = (key, defaultValue) => {
     return Number(envValue)
   }
 
+  if (typeof envValue === "string" && envValue.includes(",")) {
+    return envValue.split(",").map(i => i.trim())
+  }
+
   return envValue
 }
