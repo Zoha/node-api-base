@@ -13,12 +13,10 @@
       }
     },
     {
-      "name": "node start script",
+      "command": "npm run start",
+      "name": "Run npm dev",
       "request": "launch",
-      "runtimeArgs": ["run-script", "start"],
-      "runtimeExecutable": "npm",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
+      "type": "node-terminal"
     }
   ]
 }
