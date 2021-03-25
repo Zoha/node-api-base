@@ -6,6 +6,7 @@ const config = require("@config")
 const environments = require("@enums/environments")
 const morgan = require("morgan")
 const httpModule = require("http")
+const path = require("path")
 
 const port = config.port
 const app = express()
@@ -33,6 +34,8 @@ loadFilesIn(__dirname, "schemas")
 
 // load routes
 app.use(require("./routes"))
+
+app.use(express.static(path.join(__dirname, "./public/")))
 
 if (config.nodeEnv !== environments.test) {
   app.listen(port, () => {
