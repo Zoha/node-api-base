@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "name": "Debug with mocha",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": ["--no-timeouts", "${relativeFile}", "-g", "${selectedText}"],
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    {
+      "name": "node start script",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "start"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    }
+  ]
+}
