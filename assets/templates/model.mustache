@@ -1,16 +1,24 @@
 const mongoose = require("mongoose")
+const Schema = require("mongoose").Schema
 const loadModelStatics = require("@utils/loadModelStatics")
 const loadModelMethods = require("@utils/loadModelMethods")
 
 // eslint-disable-next-line no-unused-vars
-const { schema: {{ model }}Schema, properties: {{ model }}SchemaProperties } = require("./{{ model }}/{{ model }}Schema")
+const {{ model }}ModelProperties = require("./{{ model }}/{{ model }}ModelProperties")
+const {{ model }}Schema = new Schema({{ model }}ModelProperties, { timestamps: true })
 
 
 loadModelMethods({{ model }}Schema, __dirname, "{{ model }}/methods")
 loadModelStatics({{ model }}Schema, __dirname, "{{ model }}/statics")
 
 /**
- * @typedef {mongoose.Document & {{ model }}SchemaProperties} {{ Model }}
+ * @typedef {import("./{{ model }}/{{ model }}TypeDefs").{{ model }}ModelProperties} {{ model }}ModelProperties
+ * @typedef {import("./{{ model }}/{{ model }}TypeDefs").{{ model }}ModelMethods} {{ model }}ModelMethods
+ * @typedef {import("./{{ model }}/{{ model }}TypeDefs").{{ model }}ModelStaticMethods} {{ model }}ModelStaticMethods
+ * @typedef {mongoose.Document & {{ model }}ModelProperties & {{ model }}ModelMethods } {{ model }}
+ * @typedef {mongoose.Model & {{ model }}ModelStaticMethods} {{ Model }}
  */
 
-module.exports = mongoose.model("{{ Model }}", {{ model }}Schema)
+/** @type {{{ Model }}} */
+const {{ model }}Model = mongoose.model("{{ Model }}", {{ model }}Schema)
+module.exports = {{ model }}Model

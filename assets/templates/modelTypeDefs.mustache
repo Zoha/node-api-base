@@ -1,0 +1,58 @@
+{{#withoutFields}}
+/**
+ * @typedef {object} {{ model }}ModelProperties
+ * @property {import("mongoose").Types.ObjectId} _id
+ * @property {Date} updatedAt
+ * @property {Date} createdAt
+ */
+{{/withoutFields}}
+
+{{#withoutMethods}}
+/**
+ * @typedef {import("mongoose").Document} {{ model }}ModelMethods
+ */
+{{/withoutMethods}}
+
+{{#withoutStatics}}
+/**
+ * @typedef {import("mongoose").Model} {{ model }}ModelStaticMethods
+ */
+{{/withoutStatics}}
+
+{{#customTypes}}
+/**
+ * @typedef {object} {{name}}
+ {{#props}}
+ * @property { {{{type}}} } [{{{key}}}]
+ {{/props}}
+ */
+{{/customTypes}}
+
+{{#hasFields}}
+/**
+ * @typedef {object} {{ model }}ModelProperties
+ {{#fields}}
+ * @property { {{{type}}} } [{{{key}}}]
+ {{/fields}}
+ */
+{{/hasFields}}
+
+{{#hasMethods}}
+/**
+ * @typedef {object} {{ model }}ModelMethods
+ {{#methods}}
+ * @property { import("./methods/{{{name}}}") } [{{{name}}}]
+ {{/methods}}
+ */
+{{/hasMethods}}
+
+{{#hasStatics}}
+/**
+ * @typedef {object} {{ model }}ModelStaticMethods
+ {{#statics}}
+ * @property { import("./statics/{{{name}}}") } [{{{name}}}]
+ {{/statics}}
+ */
+{{/hasStatics}}
+
+module.exports = {}

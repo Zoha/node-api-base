@@ -15,22 +15,35 @@ module.exports = {
       Model: ucfirst(pluralize.singular(modelName))
     }
     const modelFilePath = path.join(__dirname, "../models/", data.Model + ".js")
-    const modelFieldsFilePath = path.join(
+    const modelPropertiesFilePath = path.join(
       __dirname,
       "../models/",
       data.model,
-      data.model + "Fields.js"
+      data.model + "ModelProperties.js"
+    )
+    const modelTypeDefsFilePath = path.join(
+      __dirname,
+      "../models/",
+      data.model,
+      data.model + "TypeDefs.js"
     )
     const modelTemplatePath = path.join(__dirname, "../assets/templates/model.mustache")
-    const modelSchemaTemplatePath = path.join(__dirname, "../assets/templates/modelFields.mustache")
+    const modelPropertiesTemplateFilePath = path.join(
+      __dirname,
+      "../assets/templates/modelProperties.mustache"
+    )
+    const modelTypeDefsTemplatePath = path.join(
+      __dirname,
+      "../assets/templates/modelTypeDefs.mustache"
+    )
     const modelDirectories = [
       path.join(__dirname, "../models/", data.model),
       path.join(__dirname, "../models/", data.model, "statics"),
       path.join(__dirname, "../models/", data.model, "methods")
     ]
 
-    if (fs.existsSync(modelFilePath) || fs.existsSync(modelFieldsFilePath)) {
-      console.info(chalk.red("model or modelFields file already exists"))
+    if (fs.existsSync(modelFilePath) || fs.existsSync(modelPropertiesFilePath)) {
+      console.info(chalk.red("model or modelProperties file already exists"))
       return false
     }
 
@@ -47,10 +60,28 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(modelTemplatePath, "utf-8"), data))
     )
 
-    // create fields file
+    // create properties file
     fs.writeFileSync(
-      modelFieldsFilePath,
-      await formatCode(mustache.render(fs.readFileSync(modelSchemaTemplatePath, "utf-8"), data))
+      modelPropertiesFilePath,
+      await formatCode(
+        mustache.render(fs.readFileSync(modelPropertiesTemplateFilePath, "utf-8"), {
+          ...data,
+          withoutProperties: true
+        })
+      )
+    )
+
+    // create type defs file
+    fs.writeFileSync(
+      modelTypeDefsFilePath,
+      await formatCode(
+        mustache.render(fs.readFileSync(modelTypeDefsTemplatePath, "utf-8"), {
+          ...data,
+          withoutMethods: true,
+          withoutStatics: true,
+          withoutFields: true
+        })
+      )
     )
 
     console.info(chalk.green(data.model + " model created"))

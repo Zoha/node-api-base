@@ -14,7 +14,7 @@
     },
     {
       "command": "npm run start",
-      "name": "Run npm dev",
+      "name": "Run npm start",
       "request": "launch",
       "type": "node-terminal"
     }

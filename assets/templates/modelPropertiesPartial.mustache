@@ -1,0 +1,19 @@
+{{#isArrayNested}}
+type: [
+    {
+        {{#properties}}
+        {{> child}}
+        {{/properties}}
+    }
+]
+{{/isArrayNested}}
+{{#isObjectNested}}
+{{#properties}}
+{{key}} : {
+    {{> child}}
+},
+{{/properties}}
+{{/isObjectNested}}
+{{#notNested}}
+type: {{type}}
+{{/notNested}}
