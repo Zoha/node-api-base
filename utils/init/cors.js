@@ -6,13 +6,7 @@ module.exports = app => {
     ? config.accessOrigins
     : [config.accessOrigins]
   const corsOptions = {
-    origin: function(origin, callback) {
-      if (whiteList.indexOf(origin) !== -1) {
-        callback(null, true)
-      } else {
-        callback(new Error("Not allowed by CORS"))
-      }
-    }
+    origin: whiteList
   }
   app.use(cors(corsOptions))
 }

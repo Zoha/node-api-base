@@ -30,15 +30,15 @@ loadFilesIn(__dirname, "utils/init", { data: [app, http] })
 // load all models
 loadFilesIn(__dirname, "models")
 // load all schemas
-loadFilesIn(__dirname, "schemas")
+loadFilesIn(__dirname, "schemas", { optional: true })
+
+app.use(express.static(path.join(__dirname, "./public/")))
 
 // load routes
 app.use(require("./routes"))
 
-app.use(express.static(path.join(__dirname, "./public/")))
-
 if (config.nodeEnv !== environments.test) {
-  app.listen(port, () => {
+  http.listen(port, () => {
     console.info(chalk.green(`app is running on port ${port}`))
   })
 }

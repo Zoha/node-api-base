@@ -11,17 +11,12 @@ module.exports.init = async http => {
   const originWhiteList = Array.isArray(config.accessOrigins)
     ? config.accessOrigins
     : [config.accessOrigins]
+  // @ts-ignore
   exportObject.io = await socket(http, {
-    path: "/socket",
+    path: config.socketPath,
     // @ts-ignore
     cors: {
-      origin: function(origin, callback) {
-        if (originWhiteList.indexOf(origin) !== -1) {
-          callback(null, true)
-        } else {
-          callback(new Error("Not allowed by CORS"))
-        }
-      }
+      origin: originWhiteList
     }
   })
   loadFilesIn(__dirname, "../sockets/", { data: [exportObject.io] })
