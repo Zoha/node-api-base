@@ -1,0 +1,7 @@
+const env = require("@utils/env")
+
+module.exports = {
+  {{#configs}}
+    {{ key }}: env("{{ originalKey }}", {{{ value }}}),
+  {{/configs}}
+}

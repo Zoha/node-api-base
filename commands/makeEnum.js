@@ -1,4 +1,4 @@
-const ejs = require("ejs")
+const mustache = require("mustache")
 const changeCase = require("change-case")
 const path = require("path")
 const fs = require("fs")
@@ -11,7 +11,7 @@ module.exports = {
   action: async (name, items) => {
     name = changeCase.camelCase(name.replace(/\.js$/, ""))
 
-    const enumTemplatePath = path.join(__dirname, "../assets/templates/enum.ejs")
+    const enumTemplatePath = path.join(__dirname, "../assets/templates/enum.mustache")
     const newEnumFilePath = path.join(__dirname, "../enums/", name + ".js")
 
     items = items.map(item => ({
@@ -25,7 +25,7 @@ module.exports = {
     }
     fs.writeFileSync(
       newEnumFilePath,
-      await formatCode(ejs.render(fs.readFileSync(enumTemplatePath, "utf-8"), { items }))
+      await formatCode(mustache.render(fs.readFileSync(enumTemplatePath, "utf-8"), { items }))
     )
     console.info(chalk.green("enum created"))
   }

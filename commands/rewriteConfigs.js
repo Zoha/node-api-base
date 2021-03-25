@@ -1,6 +1,6 @@
 const fs = require("fs")
 const path = require("path")
-const ejs = require("ejs")
+const mustache = require("mustache")
 const { camelCase } = require("change-case")
 const chalk = require("chalk")
 const lodash = require("lodash")
@@ -22,7 +22,7 @@ module.exports = {
     let configs = lodash.uniqBy(
       [...envFileContent.split("\n"), ...envExampleFileContent.split("\n")]
         .map(i => i.replace("\r", ""))
-        .filter(line => line.length && !line.includes("#"))
+        .filter(line => line.length && !line.startsWith("#"))
         .map(i => ({
           key: /^([^=]+)=/.exec(i)[1],
           value: /^[^=]+=["']?([^"'\n]*)["']?/.exec(i)[1]
@@ -38,16 +38,19 @@ module.exports = {
       if (typeof config.value === "string" && /^\d+$/.test(config.value)) {
         config.value = Number(config.value)
       }
-      config.snakeKey = config.key
+      config.originalKey = config.key
       config.key = camelCase(config.key)
+      if (typeof config.value === "string") {
+        config.value = `"${config.value}"`
+      }
       return config
     })
 
     fs.writeFileSync(
       path.join(__dirname, "../config.js"),
       await formatCode(
-        ejs.render(
-          fs.readFileSync(path.join(__dirname, "../assets/templates/configs.ejs"), "utf-8"),
+        mustache.render(
+          fs.readFileSync(path.join(__dirname, "../assets/templates/configs.mustache"), "utf-8"),
           { configs }
         )
       )

@@ -1,6 +1,0 @@
-const env = require("@utils/env")
-
-module.exports = {
-  <% configs.forEach(i => { %> 
-    <%= i.key %>: env("<%= i.snakeKey || i.key.toUpperCase() %>", <%- typeof i.value === 'string' ? `"${i.value}"` :i.value %>),<%})%>
-}

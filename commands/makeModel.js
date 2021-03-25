@@ -1,6 +1,6 @@
 const fs = require("fs")
 const path = require("path")
-const ejs = require("ejs")
+const mustache = require("mustache")
 const chalk = require("chalk")
 const pluralize = require("pluralize")
 const ucfirst = require("ucfirst")
@@ -21,8 +21,8 @@ module.exports = {
       data.model,
       data.model + "Schema.js"
     )
-    const modelTemplatePath = path.join(__dirname, "../assets/templates/model.ejs")
-    const modelSchemaTemplatePath = path.join(__dirname, "../assets/templates/modelSchema.ejs")
+    const modelTemplatePath = path.join(__dirname, "../assets/templates/model.mustache")
+    const modelSchemaTemplatePath = path.join(__dirname, "../assets/templates/modelSchema.mustache")
     const modelDirectories = [
       path.join(__dirname, "../models/", data.model),
       path.join(__dirname, "../models/", data.model, "statics"),
@@ -44,13 +44,13 @@ module.exports = {
     // create model file
     fs.writeFileSync(
       modelFilePath,
-      await formatCode(ejs.render(fs.readFileSync(modelTemplatePath, "utf-8"), data))
+      await formatCode(mustache.render(fs.readFileSync(modelTemplatePath, "utf-8"), data))
     )
 
     // create schema
     fs.writeFileSync(
       modelSchemaFilePath,
-      await formatCode(ejs.render(fs.readFileSync(modelSchemaTemplatePath, "utf-8"), data))
+      await formatCode(mustache.render(fs.readFileSync(modelSchemaTemplatePath, "utf-8"), data))
     )
 
     console.info(chalk.green(data.model + " model created"))
