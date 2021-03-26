@@ -11,7 +11,7 @@ const inquirer = require("inquirer")
 module.exports = {
   command: "make:schema <name>",
   async action(name) {
-    const schema = pluralize.singular(name)
+    const schema = pluralize.singular(name.toLowerCase())
     const Schema = ucfirst(schema)
 
     const schemasDirectory = path.join(__dirname, "../schemas/")

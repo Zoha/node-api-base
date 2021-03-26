@@ -15,7 +15,7 @@ const getFieldTypeName = name => {
 }
 
 const getModelData = async model => {
-  model = pluralize.singular(model)
+  model = pluralize.singular(model.toLowerCase())
   const Model = ucfirst(model)
 
   let schema
@@ -123,7 +123,7 @@ const getModelData = async model => {
 }
 
 const updateModel = async model => {
-  model = pluralize.singular(model)
+  model = pluralize.singular(model.toLowerCase())
   if (!fs.existsSync(path.join(__dirname, `../models/${model}.js`))) {
     console.info(chalk.red("model does not exist"))
     return

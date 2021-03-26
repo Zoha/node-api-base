@@ -11,7 +11,7 @@ module.exports = {
   options: [],
   async action(modelName) {
     const data = {
-      model: pluralize.singular(modelName),
+      model: pluralize.singular(modelName.toLowerCase()),
       Model: ucfirst(pluralize.singular(modelName))
     }
     const modelFilePath = path.join(__dirname, "../models/", data.Model + ".js")
