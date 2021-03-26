@@ -24,6 +24,9 @@ const getModelData = async model => {
   const customTypes = []
 
   const saveFieldsTypes = (field, target = fields) => {
+    if (!field.creatable && !field.updatable) {
+      return
+    }
     if (!field.isNested) {
       target[field.nestedKey] = getFieldTypeName(field.type.name)
     } else if (field.isObjectNested) {
@@ -89,6 +92,8 @@ const getModelData = async model => {
     }
   }
 
+  const internalFields = ["_id", "createdAt", "updatedAt"]
+
   return {
     model,
     Model,
@@ -109,7 +114,9 @@ const getModelData = async model => {
         type: type
       }))
     })),
-    properties: Object.values(schemaFields).map(formatField),
+    properties: Object.values(schemaFields)
+      .filter(i => !internalFields.includes(i.key))
+      .map(formatField),
     withoutFields: !Object.values(fields).length,
     withoutProperties: !Object.values(schemaFields).length,
     withoutMethods: !methods.length,
