@@ -34,7 +34,7 @@ module.exports = {
     if (!fs.existsSync(modelFilePath)) {
       const commandFilePath = path.join(__dirname, "../command.js")
       const command = `${commandFilePath} make:model ${schema}`
-      console.log(execCommand("node", command.split(" ")).stderr.toString())
+      console.info(execCommand("node", command.split(" ")).stderr.toString())
     }
 
     const data = {

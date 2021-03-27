@@ -31,16 +31,9 @@ const expressValidatorHandler = validations => {
   ]
 }
 
-const validatorJsHandler = validations => {
+const validatorJsHandler = (validations, target) => {
   return (req, res, next) => {
-    const validationResult = new ValidatorJs(
-      {
-        ...req.query,
-        ...(req.body || {}),
-        ...req.params
-      },
-      validations
-    )
+    const validationResult = new ValidatorJs(req[target], validations)
     if (validationResult.passes()) {
       return next()
     } else {
@@ -65,13 +58,14 @@ const validatorJsHandler = validations => {
  * @typedef {import("validatorjs").Rules} validationsObject
  *
  * @param {validationsList | validationsObject} validations
+ * @param {("query"|"body"|"param")} target
  * @returns { RequestHandler | RequestHandler[]}
  */
-const validate = validations => {
+const validate = (validations, target = "body") => {
   if (Array.isArray(validations)) {
     return expressValidatorHandler(validations)
   } else if (typeof validations == "object") {
-    return validatorJsHandler(validations)
+    return validatorJsHandler(validations, target)
   }
   throw new Error("validations input are invalid")
 }
