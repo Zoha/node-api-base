@@ -115,6 +115,7 @@ const getModelData = async model => {
       }))
     })),
     properties: Object.values(schemaFields)
+      .filter(i => !!i.creatable || !!i.updatable)
       .filter(i => !internalFields.includes(i.key))
       .map(formatField),
     withoutFields: !Object.values(fields).length,
