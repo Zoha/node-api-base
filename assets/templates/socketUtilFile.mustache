@@ -1,6 +1,7 @@
 const config = require("@config")
 const socket = require("socket.io")
 const loadFilesIn = require("./loadFilesIn")
+const { corsOptions } = require("./init/cors")
 
 const exportObject = {
   io: null
@@ -8,16 +9,11 @@ const exportObject = {
 
 module.exports = exportObject
 module.exports.init = async http => {
-  const originWhiteList = Array.isArray(config.accessOrigins)
-    ? config.accessOrigins
-    : [config.accessOrigins]
   // @ts-ignore
   exportObject.io = await socket(http, {
     path: config.socketPath,
     // @ts-ignore
-    cors: {
-      origin: originWhiteList
-    }
+    cors: corsOptions
   })
   loadFilesIn(__dirname, "../sockets/", { data: [exportObject.io] })
 }
