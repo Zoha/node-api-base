@@ -19,6 +19,6 @@ loadModelStatics({{ model }}Schema, __dirname, "{{ model }}/statics")
  * @typedef {mongoose.Model & {{ model }}ModelStaticMethods} {{ Model }}
  */
 
-/** @type {{{{ Model }}}} */
+/** @type { {{ Model }} } */
 const {{ Model }} = mongoose.model("{{ Model }}", {{ model }}Schema)
 module.exports = {{ Model }}
