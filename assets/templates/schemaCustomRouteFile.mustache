@@ -1,0 +1,13 @@
+const {{Model}} = require("@models/{{Model}}")
+
+/** @type {import("rest-schema/typeDefs/route").route} */
+const {{routeName}}Route = {
+  name: "{{routeName}}",
+  path: "/{{routeName}}",
+  method: "get",
+  async handler(ctx) {
+    // route handler
+  }
+}
+
+module.exports = {{routeName}}Route

@@ -4,6 +4,10 @@ const app = require("../../index")
 const { expect } = require("chai")
 
 describe("index route basic test", () => {
+  beforeEach(async () => {
+    // beforeEach
+  })
+
   it("will return proper json message", async () => {
     await request(app)
       .get("/")

@@ -5,6 +5,7 @@ const pluralize = require("pluralize")
 const ucfirst = require("ucfirst")
 const mustache = require("mustache")
 const formatCode = require("@utils/formatCode")
+const { camelCase } = require("change-case")
 
 const getFieldTypeName = name => {
   if (name.includes("ObjectId")) {
@@ -15,7 +16,7 @@ const getFieldTypeName = name => {
 }
 
 const getModelData = async model => {
-  model = pluralize.singular(model.toLowerCase())
+  model = pluralize.singular(camelCase(model))
   const Model = ucfirst(model)
 
   let schema
@@ -131,7 +132,7 @@ const getModelData = async model => {
 }
 
 const updateModel = async model => {
-  model = pluralize.singular(model.toLowerCase())
+  model = pluralize.singular(camelCase(model))
   if (!fs.existsSync(path.join(__dirname, `../models/${model}.js`))) {
     console.info(chalk.red("model does not exist"))
     return
@@ -188,5 +189,7 @@ module.exports = {
         .map(i => i.slice(0, i.length - 3))
     }
     await Promise.all(models.map(model => updateModel(model)))
+
+    process.exit()
   }
 }

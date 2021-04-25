@@ -8,5 +8,9 @@ module.exports = {
   accessOrigins: env("ACCESS_ORIGINS", "*"),
   socketPath: env("SOCKET_PATH", "/socket"),
   mongodbUriTest: env("MONGODB_URI_TEST", "mongodb://127.0.0.1:27017/baseTest"),
-  mongodbUri: env("MONGODB_URI", "mongodb://127.0.0.1:27017/base")
+  mongodbUri: env("MONGODB_URI", "mongodb://127.0.0.1:27017/base"),
+  redisPort: env("REDIS_PORT", 6379),
+  redisHost: env("REDIS_HOST", "127.0.0.1"),
+  redisPassword: env("REDIS_PASSWORD", ""),
+  redisKeysPrefix: env("REDIS_KEYS_PREFIX", "app")
 }

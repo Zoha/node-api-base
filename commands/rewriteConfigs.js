@@ -57,5 +57,6 @@ module.exports = {
       )
     )
     console.info(chalk.green("config file updated"))
+    process.exit()
   }
 }

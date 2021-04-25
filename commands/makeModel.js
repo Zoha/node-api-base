@@ -9,9 +9,9 @@ const formatCode = require("@utils/formatCode")
 module.exports = {
   command: "make:model <name>",
   options: [],
-  async action(modelName) {
+  async action(/** @type {string} */ modelName) {
     const data = {
-      model: pluralize.singular(modelName.toLowerCase()),
+      model: pluralize.singular(modelName),
       Model: ucfirst(pluralize.singular(modelName))
     }
     const modelFilePath = path.join(__dirname, "../models/", data.Model + ".js")
@@ -85,5 +85,6 @@ module.exports = {
     )
 
     console.info(chalk.green(data.model + " model created"))
+    process.exit()
   }
 }

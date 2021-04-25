@@ -28,5 +28,6 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(enumTemplatePath, "utf-8"), { items }))
     )
     console.info(chalk.green("enum created"))
+    process.exit()
   }
 }

@@ -5,7 +5,10 @@ const loadModelMethods = require("@utils/loadModelMethods")
 
 // eslint-disable-next-line no-unused-vars
 const {{ model }}ModelProperties = require("./{{ model }}/{{ model }}ModelProperties")
-const {{ model }}Schema = new Schema({{ model }}ModelProperties, { timestamps: true })
+const {{ model }}Schema = new Schema({
+    ...{{ model }}ModelProperties,
+    // custom static properties 
+}, { timestamps: true })
 
 
 loadModelMethods({{ model }}Schema, __dirname, "{{ model }}/methods")

@@ -11,7 +11,7 @@ const inquirer = require("inquirer")
 module.exports = {
   command: "make:schema <name>",
   async action(name) {
-    const schema = pluralize.singular(name.toLowerCase())
+    const schema = pluralize.singular(name)
     const Schema = ucfirst(schema)
 
     const schemasDirectory = path.join(__dirname, "../schemas/")
@@ -109,5 +109,6 @@ module.exports = {
     }
 
     console.info(chalk.green(schema + " schema file created"))
+    process.exit()
   }
 }

@@ -1,6 +1,11 @@
 {
   "cSpell.words": [
     "gitkeep",
+    "hdel",
+    "hget",
+    "hgetall",
+    "hmset",
+    "hset",
     "ucfirst",
     "validatorjs"
   ],

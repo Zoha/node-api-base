@@ -32,5 +32,6 @@ module.exports = {
     fs.mkdirSync(socketsPath)
     fs.copyFileSync(socketRootNamespaceTemplateFilePath, socketRootNamespaceFilePath)
     console.info(chalk.green("socket initialized"))
+    process.exit()
   }
 }
