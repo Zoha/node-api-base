@@ -1,0 +1,15 @@
+const socketEvents = require("@enums/socketEvents")
+const loadFilesIn = require("@utils/loadFilesIn")
+
+/**
+ *  @param {import("socket.io").Namespace} io
+ */
+module.exports = io => {
+  io.on(
+    // @ts-ignore
+    socketEvents.connection,
+    /** @param {import("socket.io").Socket} socket */ async socket => {
+      loadFilesIn(__dirname, "./", { data: [io, socket], ignoreFiles: ["connection.js"] })
+    }
+  )
+}

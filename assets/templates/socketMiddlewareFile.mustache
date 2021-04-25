@@ -1,0 +1,13 @@
+/**
+ * @returns {function(import("socket.io").Socket , function)}
+ */
+module.exports = () => {
+  return async (socket, next) => {
+    try {
+      // middleware content
+      next()
+    } catch (e) {
+      next(e)
+    }
+  }
+}

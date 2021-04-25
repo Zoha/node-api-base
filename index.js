@@ -24,11 +24,6 @@ if (config.nodeEnv === environments.development) {
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// load all models
-loadFilesIn(__dirname, "models")
-// load all schemas
-loadFilesIn(__dirname, "schemas", { optional: true })
-
 // load init files
 loadFilesIn(__dirname, "utils/init", { data: [app, http] })
 

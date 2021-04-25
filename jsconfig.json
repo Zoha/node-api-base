@@ -16,6 +16,7 @@
       "@routes/*": ["routes/*"],
       "@tests/*": ["tests/*"],
       "@utils/*": ["utils/*"],
+      "@sockets/*": ["./sockets/*"],
       "@config": ["config"],
       "@root/*": ["./*"],
       "@constants/*": ["constants/*"]

@@ -1,0 +1,15 @@
+const fs = require("fs")
+const path = require("path")
+
+/**
+ *  @param {import("socket.io").Server} io
+ */
+module.exports = async io => {
+  const namespaceDirs = fs
+    .readdirSync(path.join(__dirname, "./listeners"))
+    .filter(i => i === "root")
+  require("./listeners/root/connection")(io.of("/"))
+  for (const namespaceDir of namespaceDirs) {
+    require(`./listeners/${namespaceDir}/connection.js`)(io.of(`/${namespaceDir}`))
+  }
+}

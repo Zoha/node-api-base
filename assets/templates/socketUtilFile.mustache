@@ -1,7 +1,7 @@
 const config = require("@config")
 const socket = require("socket.io")
-const loadFilesIn = require("./loadFilesIn")
-const { corsOptions } = require("./init/cors")
+const { corsOptions } = require("./init/initCors")
+const socketsManager = require("@sockets/index")
 
 const exportObject = {
   io: null
@@ -15,5 +15,5 @@ module.exports.init = async http => {
     // @ts-ignore
     cors: corsOptions
   })
-  loadFilesIn(__dirname, "../sockets/", { data: [exportObject.io] })
+  socketsManager(exportObject.io)
 }

@@ -1,6 +1,8 @@
 const chalk = require("chalk")
 const fs = require("fs")
+const mkdirp = require("mkdirp")
 const path = require("path")
+const { spawnSync: execCommand } = require("child_process")
 
 module.exports = {
   command: "init:socket",
@@ -21,16 +23,27 @@ module.exports = {
     )
     const socketUtilFilePath = path.join(__dirname, "../utils/", "socket.js")
 
-    const socketRootNamespaceTemplateFilePath = path.join(
+    const socketManagerTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketRootNamespace.mustache"
+      "../assets/templates/socketManagerFile.mustache"
     )
-    const socketRootNamespaceFilePath = path.join(__dirname, "../sockets/", "index.js")
+    const socketManagerFilePath = path.join(socketsPath, "index.js")
 
     fs.copyFileSync(socketInitTemplateFilePath, socketInitFilePath)
     fs.copyFileSync(socketUtilTemplateFilePath, socketUtilFilePath)
-    fs.mkdirSync(socketsPath)
-    fs.copyFileSync(socketRootNamespaceTemplateFilePath, socketRootNamespaceFilePath)
+    mkdirp.sync(path.join(socketsPath, "emits"))
+    fs.writeFileSync(path.join(socketsPath, "emits/.gitkeep"), "")
+    mkdirp.sync(path.join(socketsPath, "listeners"))
+    mkdirp.sync(path.join(socketsPath, "middleware"))
+    fs.writeFileSync(path.join(socketsPath, "middleware/.gitkeep"), "")
+    fs.copyFileSync(socketManagerTemplateFilePath, socketManagerFilePath)
+
+    console.info(execCommand("node", ["command", "make:socketNamespace", "root"]).stderr.toString())
+
+    console.info(
+      execCommand("node", ["command", "make:enum", "socketEvents", "connection"]).stderr.toString()
+    )
+
     console.info(chalk.green("socket initialized"))
     process.exit()
   }
