@@ -9,8 +9,9 @@ const { spawnSync: execCommand } = require("child_process")
 const inquirer = require("inquirer")
 
 module.exports = {
-  command: "make:schema <name>",
-  async action(name) {
+  command: "make:schema <name> [fileName]",
+  async action(name, fileName) {
+    fileName = fileName || name
     const schema = pluralize.singular(name)
     const Schema = ucfirst(schema)
 
@@ -21,7 +22,7 @@ module.exports = {
     }
 
     const schemaTemplateFilePath = path.join(__dirname, "../assets/templates/", `schema.mustache`)
-    const schemaFilePath = path.join(schemasDirectory, `${schema}Schema.js`)
+    const schemaFilePath = path.join(schemasDirectory, `${fileName}Schema.js`)
 
     // check that schema file already exists or not
     if (fs.existsSync(schemaFilePath)) {
@@ -39,7 +40,8 @@ module.exports = {
 
     const data = {
       schema,
-      Schema
+      Schema,
+      fileName
     }
 
     // create model file
