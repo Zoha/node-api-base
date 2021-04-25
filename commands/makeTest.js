@@ -11,8 +11,8 @@ module.exports = {
     // make test file path
     /** @type {string} */
     let testFilePath = filePath
-    if (!testFilePath.endsWith(".js")) {
-      testFilePath += ".js"
+    if (!testFilePath.endsWith(".test.js")) {
+      testFilePath += ".test.js"
     }
 
     // create test file

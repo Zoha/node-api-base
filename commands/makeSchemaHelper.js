@@ -1,4 +1,4 @@
-const { pascalCase, camelCase } = require("change-case")
+const { camelCase } = require("change-case")
 const path = require("path")
 const fs = require("fs")
 const pluralize = require("pluralize")

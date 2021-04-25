@@ -1,6 +1,7 @@
 const config = require("@config")
 const chalk = require("chalk")
 
+// eslint-disable-next-line no-unused-vars
 module.exports = (err, req, res, next) => {
   let data = {
     message: err.message || "an error happened"
