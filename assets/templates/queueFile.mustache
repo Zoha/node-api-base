@@ -1,0 +1,13 @@
+const queueMaker = require("@utils/queueMaker")
+
+const {{queue}}Queue = queueMaker("{{queue}}Queue")
+
+{{queue}}Queue.process(async function({ data }) {
+  try {
+    // const Model = require("@models/Model")
+  } catch (e) {
+    // handler error in process
+  }
+})
+
+module.exports = {{queue}}Queue

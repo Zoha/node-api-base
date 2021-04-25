@@ -1,0 +1,32 @@
+const Bull = require("bull")
+const config = require("@config")
+const environments = require("@enums/environments")
+const randomString = require("crypto-random-string").default
+
+module.exports = (title, customData = {}) => {
+  const queue = new Bull(title, {
+    redis: {
+      host: config.redisHost,
+      port: config.redisPort,
+      ...(config.redisPassword ? { password: config.redisPassword } : {})
+    },
+    ...customData
+  })
+
+  // if is test we just return a fake instance
+  return config.nodeEnv === environments.test
+    ? {
+        add(data, options) {},
+        process(callback) {},
+        removeJobs(pattern) {}
+      }
+    : queue
+}
+
+module.exports.createJobId = id => {
+  return id.toString() + randomString({ length: 5 })
+}
+
+module.exports.createJobIdPattern = id => {
+  return `${id.toString()}*`
+}
