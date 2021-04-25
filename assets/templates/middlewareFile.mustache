@@ -1,0 +1,13 @@
+/**
+ * @returns {import("express").RequestHandler}
+ */
+module.exports = () => {
+  return async (req, res, next) => {
+    try {
+      // handler
+      next()
+    } catch (e) {
+      next(e)
+    }
+  }
+}
