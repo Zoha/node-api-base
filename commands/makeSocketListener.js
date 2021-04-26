@@ -27,7 +27,7 @@ module.exports = {
     // create listener file
     const socketListenerTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketListenerFile.mustache"
+      "../assets/templates/mustache/socketListenerFile.mustache"
     )
 
     fs.writeFileSync(

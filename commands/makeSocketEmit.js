@@ -21,7 +21,7 @@ module.exports = {
     // create emit file
     const socketEmitTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketEmitFile.mustache"
+      "../assets/templates/mustache/socketEmitFile.mustache"
     )
 
     fs.writeFileSync(

@@ -27,14 +27,14 @@ module.exports = {
       data.model,
       data.model + "TypeDefs.js"
     )
-    const modelTemplatePath = path.join(__dirname, "../assets/templates/model.mustache")
+    const modelTemplatePath = path.join(__dirname, "../assets/templates/mustache/model.mustache")
     const modelPropertiesTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/modelProperties.mustache"
+      "../assets/templates/mustache/modelProperties.mustache"
     )
     const modelTypeDefsTemplatePath = path.join(
       __dirname,
-      "../assets/templates/modelTypeDefs.mustache"
+      "../assets/templates/mustache/modelTypeDefs.mustache"
     )
     const modelDirectories = [
       path.join(__dirname, "../models/", data.model),
@@ -50,7 +50,7 @@ module.exports = {
     // create directories
     modelDirectories.forEach(dir => {
       fs.mkdirSync(dir)
-      const gitKeepPath = path.join(__dirname, "../assets/templates/.gitkeep")
+      const gitKeepPath = path.join(__dirname, "../assets/templates/mustache/.gitkeep")
       fs.copyFileSync(gitKeepPath, path.join(dir, ".gitkeep"))
     })
 

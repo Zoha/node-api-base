@@ -146,7 +146,7 @@ const updateModel = async model => {
   )
   const modelPropertiesTemplateFilePath = path.join(
     __dirname,
-    "../assets/templates/modelProperties.mustache"
+    "../assets/templates/mustache/modelProperties.mustache"
   )
 
   const modelTypeDefsFilePath = path.join(
@@ -157,7 +157,7 @@ const updateModel = async model => {
   )
   const modelTypeDefsTemplatePath = path.join(
     __dirname,
-    "../assets/templates/modelTypeDefs.mustache"
+    "../assets/templates/mustache/modelTypeDefs.mustache"
   )
   fs.writeFileSync(
     modelTypeDefsFilePath,
@@ -168,7 +168,7 @@ const updateModel = async model => {
     await formatCode(
       mustache.render(fs.readFileSync(modelPropertiesTemplateFilePath, "utf-8"), data, {
         child: fs.readFileSync(
-          path.join(__dirname, "../assets/templates/modelPropertiesPartial.mustache"),
+          path.join(__dirname, "../assets/templates/mustache/modelPropertiesPartial.mustache"),
           "utf-8"
         )
       })

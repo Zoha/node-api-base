@@ -51,7 +51,10 @@ module.exports = {
       path.join(__dirname, "../config.js"),
       await formatCode(
         mustache.render(
-          fs.readFileSync(path.join(__dirname, "../assets/templates/configs.mustache"), "utf-8"),
+          fs.readFileSync(
+            path.join(__dirname, "../assets/templates/mustache/configs.mustache"),
+            "utf-8"
+          ),
           { configs }
         )
       )

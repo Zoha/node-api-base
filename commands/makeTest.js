@@ -22,7 +22,10 @@ module.exports = {
       .reverse()[0]
       .replace(/\.js$/, "")
     testFilePath = path.join(testsDir, testFilePath)
-    const testFileTemplatePath = path.join(__dirname, "../assets/templates/testFile.mustache")
+    const testFileTemplatePath = path.join(
+      __dirname,
+      "../assets/templates/mustache/testFile.mustache"
+    )
 
     if (fs.existsSync(testFilePath)) {
       console.info(chalk.red("test file already exists"))

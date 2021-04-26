@@ -13,19 +13,19 @@ module.exports = {
     }
     const socketInitTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketInitFile.mustache"
+      "../assets/templates/mustache/socketInitFile.mustache"
     )
     const socketInitFilePath = path.join(__dirname, "../utils/init/", "initSocket.js")
 
     const socketUtilTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketUtilFile.mustache"
+      "../assets/templates/mustache/socketUtilFile.mustache"
     )
     const socketUtilFilePath = path.join(__dirname, "../utils/", "socket.js")
 
     const socketManagerTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketManagerFile.mustache"
+      "../assets/templates/mustache/socketManagerFile.mustache"
     )
     const socketManagerFilePath = path.join(socketsPath, "index.js")
 

@@ -13,7 +13,10 @@ module.exports = {
     }
 
     const queueFilePath = path.join(queuesDirPath, `${queue}Queue.js`)
-    const queueTemplateFilePath = path.join(__dirname, "../assets/templates/queueFile.mustache")
+    const queueTemplateFilePath = path.join(
+      __dirname,
+      "../assets/templates/mustache/queueFile.mustache"
+    )
 
     // create type defs file
     fs.writeFileSync(

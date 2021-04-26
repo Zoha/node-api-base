@@ -11,7 +11,7 @@ module.exports = {
   action: async (name, items) => {
     name = changeCase.camelCase(name.replace(/\.js$/, ""))
 
-    const enumTemplatePath = path.join(__dirname, "../assets/templates/enum.mustache")
+    const enumTemplatePath = path.join(__dirname, "../assets/templates/mustache/enum.mustache")
     const newEnumFilePath = path.join(__dirname, "../enums/", name + ".js")
 
     items = items.map(item => ({

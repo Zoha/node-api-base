@@ -28,7 +28,7 @@ module.exports = {
 
     const customRouteFileTemplatePath = path.join(
       __dirname,
-      "../assets/templates/schemaCustomRouteFile.mustache"
+      "../assets/templates/mustache/schemaCustomRouteFile.mustache"
     )
 
     fs.writeFileSync(

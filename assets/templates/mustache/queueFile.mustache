@@ -1,11 +1,14 @@
 const queueMaker = require("@utils/queueMaker")
+const log = require("@utils/log")
 
 const {{queue}}Queue = queueMaker("{{queue}}Queue")
 
-{{queue}}Queue.process(async function({ data }) {
+{{queue}}Queue.process(async function(ctx) {
+  const { data } = ctx
   try {
     // const Model = require("@models/Model")
   } catch (e) {
+    log.error("{{queue}}Queue error", e, ctx)
     // handler error in process
   }
 })

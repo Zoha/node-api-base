@@ -10,7 +10,7 @@ module.exports = {
     const middlewareDirPath = path.join(__dirname, "../middleware/")
     const middlewareTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/middlewareFile.mustache"
+      "../assets/templates/mustache/middlewareFile.mustache"
     )
     const middlewareFilePath = path.join(middlewareDirPath, `${middleware}Middleware.js`)
 

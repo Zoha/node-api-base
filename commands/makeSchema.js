@@ -21,7 +21,11 @@ module.exports = {
       fs.mkdirSync(schemasDirectory)
     }
 
-    const schemaTemplateFilePath = path.join(__dirname, "../assets/templates/", `schema.mustache`)
+    const schemaTemplateFilePath = path.join(
+      __dirname,
+      "../assets/templates/mustache/",
+      `schema.mustache`
+    )
     const schemaFilePath = path.join(schemasDirectory, `${fileName}Schema.js`)
 
     // check that schema file already exists or not
@@ -66,12 +70,12 @@ module.exports = {
       if (result.confirm) {
         const schemaIndexFilePath = path.join(
           __dirname,
-          "../assets/templates/",
+          "../assets/templates/mustache/",
           `restSchemaIndexFile.mustache`
         )
         const schemaRestFilePath = path.join(
           __dirname,
-          "../assets/templates/",
+          "../assets/templates/mustache/",
           `restSchemaRestFile.mustache`
         )
 

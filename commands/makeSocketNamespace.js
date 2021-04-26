@@ -28,7 +28,7 @@ module.exports = {
     // create namespace file
     const namespaceIndexTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/socketNamespaceIndexFile.mustache"
+      "../assets/templates/mustache/socketNamespaceIndexFile.mustache"
     )
 
     fs.writeFileSync(

@@ -24,7 +24,7 @@ module.exports = {
     // create middleware file
     const middlewareTemplateFile = path.join(
       __dirname,
-      "../assets/templates/socketMiddlewareFile.mustache"
+      "../assets/templates/mustache/socketMiddlewareFile.mustache"
     )
 
     fs.writeFileSync(

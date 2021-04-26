@@ -30,7 +30,10 @@ module.exports = {
       return process.exit(0)
     }
 
-    const methodFileTemplatePath = path.join(__dirname, "../assets/templates/methodFile.mustache")
+    const methodFileTemplatePath = path.join(
+      __dirname,
+      "../assets/templates/mustache/methodFile.mustache"
+    )
 
     fs.writeFileSync(
       methodFilePath,

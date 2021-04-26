@@ -28,7 +28,7 @@ module.exports = {
 
     const helperFileTemplatePath = path.join(
       __dirname,
-      "../assets/templates/schemaHelperFile.mustache"
+      "../assets/templates/mustache/schemaHelperFile.mustache"
     )
 
     fs.writeFileSync(

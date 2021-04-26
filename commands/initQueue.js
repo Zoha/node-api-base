@@ -16,7 +16,7 @@ module.exports = {
 
     const queueMakerTemplateFilePath = path.join(
       __dirname,
-      "../assets/templates/queueMakerFile.mustache"
+      "../assets/templates/mustache/queueMakerFile.mustache"
     )
     const queueMakerFilePath = path.join(queuesDirPath, "../queueMaker.js")
 
