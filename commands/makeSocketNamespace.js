@@ -36,7 +36,7 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(namespaceIndexTemplateFilePath, "utf-8")))
     )
 
-    console.log(chalk.green("socket namespace created successfully"))
+    console.info(chalk.green("socket namespace created successfully"))
     process.exit()
   }
 }

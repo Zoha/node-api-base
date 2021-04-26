@@ -6,6 +6,7 @@
     "hgetall",
     "hmset",
     "hset",
+    "printf",
     "ucfirst",
     "validatorjs"
   ],

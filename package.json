@@ -45,7 +45,9 @@
     "supertest": "^4.0.2",
     "ucfirst": "^1.0.0",
     "validator": "^13.5.2",
-    "validatorjs": "^3.22.1"
+    "validatorjs": "^3.22.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

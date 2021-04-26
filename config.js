@@ -12,5 +12,8 @@ module.exports = {
   redisPort: env("REDIS_PORT", 6379),
   redisHost: env("REDIS_HOST", "127.0.0.1"),
   redisPassword: env("REDIS_PASSWORD", ""),
-  redisKeysPrefix: env("REDIS_KEYS_PREFIX", "app")
+  redisKeysPrefix: env("REDIS_KEYS_PREFIX", "app"),
+  debugLevel: env("DEBUG_LEVEL", "info"),
+  debugSaveFile: env("DEBUG_SAVE_FILE", false),
+  debugSaveFileLevel: env("DEBUG_SAVE_FILE_LEVEL", "info")
 }

@@ -1,4 +1,5 @@
 const config = require("@config")
+const log = require("@utils/log")
 const chalk = require("chalk")
 
 // eslint-disable-next-line no-unused-vars
@@ -13,7 +14,8 @@ module.exports = (err, req, res, next) => {
   }
 
   if (config.nodeEnv !== "production") {
-    console.info(chalk.red(err.message))
+    if (res.statusCode >= 400 && res.statusCode < 500) log.info("request error", err)
+    else log.error("request error", err)
   }
 
   if (!res.headersSent) {

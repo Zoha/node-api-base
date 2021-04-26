@@ -32,7 +32,7 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(middlewareTemplateFile, "utf-8")))
     )
 
-    console.log(chalk.green("socket middleware created successfully"))
+    console.info(chalk.green("socket middleware created successfully"))
     process.exit()
   }
 }

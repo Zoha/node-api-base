@@ -29,7 +29,7 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(socketEmitTemplateFilePath, "utf-8")))
     )
 
-    console.log(chalk.green("socket emit created successfully"))
+    console.info(chalk.green("socket emit created successfully"))
     process.exit()
   }
 }

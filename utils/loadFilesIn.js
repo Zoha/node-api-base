@@ -1,13 +1,13 @@
 const path = require("path")
 const fs = require("fs")
-const chalk = require("chalk")
+const log = require("./log")
 
 module.exports = (dirname, targetPath, { ignoreFiles = [], optional = false, data = [] } = {}) => {
   if (!fs.existsSync(path.join(dirname, targetPath))) {
     if (optional) {
       return
     }
-    console.info(chalk.red(targetPath + "does not exist"))
+    log.error(targetPath + "does not exist")
   }
   const files = fs.readdirSync(path.join(dirname, targetPath))
   const result = {}

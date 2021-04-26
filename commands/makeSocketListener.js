@@ -35,7 +35,7 @@ module.exports = {
       await formatCode(mustache.render(fs.readFileSync(socketListenerTemplateFilePath, "utf-8")))
     )
 
-    console.log(chalk.green("socket listener created successfully"))
+    console.info(chalk.green("socket listener created successfully"))
     process.exit()
   }
 }

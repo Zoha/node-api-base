@@ -3,3 +3,5 @@ yarn-error.log
 .env
 *.zip
 *.rar
+storage/logs/*
+!storage/logs/.gitkeep
