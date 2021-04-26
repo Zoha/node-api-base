@@ -1,0 +1,14 @@
+const settings = require("@constants/settings")
+const path = require("path")
+
+/**
+ * this middleware will be called in initExpressPug
+ * @returns {import("express").RequestHandler}
+ */
+module.exports = () => {
+  return async (req, res, next) => {
+    res.locals.basedir = path.join(__dirname, "../assets/templates/pug")
+    res.locals.settings = settings
+    next()
+  }
+}

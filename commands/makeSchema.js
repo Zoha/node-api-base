@@ -55,7 +55,10 @@ module.exports = {
     )
 
     // create route file if does not exist (confirm first)
-    const routerFileDir = path.join(__dirname, `../routes/${pluralize(schema)}`)
+    const routesPath = fs.existsSync(path.join(__dirname, "../routes/api/"))
+      ? "/routes/api"
+      : "/routes"
+    const routerFileDir = path.join(__dirname, `..${routesPath}/${pluralize(schema)}`)
     const routerFileIndex = path.join(routerFileDir, "index.js")
     const routerFileRest = path.join(routerFileDir, "rest.js")
     if (!fs.existsSync(routerFileRest)) {
@@ -101,7 +104,7 @@ module.exports = {
           await formatCode(mustache.render(fs.readFileSync(schemaRestFilePath, "utf-8"), data))
         )
 
-        const routerIndexFilePath = path.join(__dirname, "../routes/index.js")
+        const routerIndexFilePath = path.join(__dirname, `..${routesPath}/index.js`)
         const routerIndex = fs.readFileSync(routerIndexFilePath, "utf-8")
         const newRouterIndexContent = routerIndex.replace(
           /\/\/\s?fallback\sroute/,

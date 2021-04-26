@@ -1,0 +1,8 @@
+const viewLocalsMiddleware = require("@middleware/viewLocalsMiddleware")
+const path = require("path")
+
+module.exports = app => {
+  app.set("view engine", "pug")
+  app.set("views", path.join(__dirname, "../../assets/templates/pug"))
+  app.use(viewLocalsMiddleware())
+}

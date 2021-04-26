@@ -1,0 +1,46 @@
+const config = require("@config")
+const log = require("@utils/log")
+const fs = require("fs")
+const path = require("path")
+const Ouch = require("ouch")
+const environments = require("@enums/environments")
+
+// eslint-disable-next-line no-unused-vars
+module.exports = (err, req, res, next) => {
+  let data = {
+    message: err.message || "an error happened"
+  }
+
+  if (config.nodeEnv !== environments.production && err.stack) {
+    // add stack in development env
+    data.stack = err.stack.split("\n").map(i => i.trim())
+  }
+
+  if (config.nodeEnv !== environments.production) {
+    if (res.statusCode >= 400 && res.statusCode < 500) log.info("request error", err)
+    else log.error("request error", err)
+  }
+
+  if (!res.headersSent) {
+    if (!res.statusCode || res.statusCode === 200) {
+      res.status(500)
+    }
+
+    if (config.nodeEnv !== environments.production) {
+      err.status = res.statusCode
+      // @ts-ignore
+      var ouchInstance = new Ouch().pushHandler(
+        // @ts-ignore
+        new Ouch.handlers.PrettyPageHandler("blue", null, "sublime")
+      )
+      return ouchInstance.handleException(err, req, res, function() {})
+    }
+
+    const statusCodeFileExists = fs.existsSync(
+      path.join(__dirname, `../assets/templates/pug/errors/${res.statusCode}.pug`)
+    )
+    res.render(statusCodeFileExists ? `errors/${res.statusCode}` : `errors/global`, {
+      error: err
+    })
+  }
+}

@@ -1,0 +1,23 @@
+const router = require("express").Router()
+
+router.get("/", async (req, res, next) => {
+  try {
+    return res.render("pages/home", { name: "world" })
+  } catch (e) {
+    next(e)
+  }
+})
+
+// loading app routes
+// all app general routes should be loaded
+// in below lines
+
+router.use("/api", require("./api"))
+
+// fallback route
+router.use(require("./fallback"))
+
+// error handler
+router.use(require("./errorHandler"))
+
+module.exports = router

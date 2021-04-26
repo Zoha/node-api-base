@@ -56,7 +56,9 @@ const createSettingManager = defaultSettings => {
         data.push(key)
         data.push(convertTypeForRedis(currentValues[key]))
       }
-      redis.hmset(settingsKey, ...data)
+      if (data.length) {
+        redis.hmset(settingsKey, ...data)
+      }
     }
   })
   const result = {}
