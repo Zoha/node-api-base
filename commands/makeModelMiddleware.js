@@ -7,8 +7,8 @@ const formatCode = require("@utils/formatCode")
 const mustache = require("mustache")
 
 module.exports = {
-  command: "make:static <modelName> <staticName>",
-  async action(modelName, staticName) {
+  command: "make:modelMiddleware <modelName> <middlewareName>",
+  async action(modelName, middlewareName) {
     modelName = pascalCase(pluralize.singular(modelName))
 
     const modelPath = path.join(__dirname, `../models/${modelName}.js`)
@@ -18,34 +18,34 @@ module.exports = {
       return process.exit(0)
     }
 
-    staticName = camelCase(staticName)
+    middlewareName = camelCase(middlewareName)
 
-    const staticFilePath = path.join(
+    const middlewareFilePath = path.join(
       __dirname,
-      `../models/${camelCase(modelName)}/statics/${staticName}.js`
+      `../models/${camelCase(modelName)}/middleware/${middlewareName}.js`
     )
 
-    if (fs.existsSync(staticFilePath)) {
-      console.info(chalk.red("static file already exists"))
+    if (fs.existsSync(middlewareFilePath)) {
+      console.info(chalk.red("middleware file already exists"))
       return process.exit(0)
     }
 
-    const staticFileTemplatePath = path.join(
+    const middlewareFileTemplatePath = path.join(
       __dirname,
-      "../assets/templates/mustache/staticFile.mustache"
+      "../assets/templates/mustache/modelMiddlewareFile.mustache"
     )
 
     fs.writeFileSync(
-      staticFilePath,
+      middlewareFilePath,
       await formatCode(
-        mustache.render(fs.readFileSync(staticFileTemplatePath, "utf-8"), {
+        mustache.render(fs.readFileSync(middlewareFileTemplatePath, "utf-8"), {
           Model: modelName,
           model: camelCase(modelName)
         })
       )
     )
 
-    console.info(chalk.green("static file created"))
+    console.info(chalk.green("middleware file created"))
     process.exit()
   }
 }

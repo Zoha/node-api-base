@@ -11,9 +11,13 @@ module.exports = {
   mongodbUri: env("MONGODB_URI", "mongodb://127.0.0.1:27017/base"),
   redisPort: env("REDIS_PORT", 6379),
   redisHost: env("REDIS_HOST", "127.0.0.1"),
-  redisPassword: env("REDIS_PASSWORD", ""),
+  redisPassword: env("REDIS_PASSWORD"),
   redisKeysPrefix: env("REDIS_KEYS_PREFIX", "app"),
+  localizationLangs: env("LOCALIZATION_LANGS", ["en", "fa"]),
+  localizationDefaultLang: env("LOCALIZATION_DEFAULT_LANG", "en"),
+  localizationQueryParam: env("LOCALIZATION_QUERY_PARAM", "lang"),
+  localizationUpdateFiles: env("LOCALIZATION_UPDATE_FILES", true),
   debugLevel: env("DEBUG_LEVEL", "info"),
   debugSaveFile: env("DEBUG_SAVE_FILE", false),
-  debugSaveFileLevel: env("DEBUG_SAVE_FILE_LEVEL", "info")
+  debugSaveFileLevel: env("DEBUG_SAVE_FILE_LEVEL", "error")
 }

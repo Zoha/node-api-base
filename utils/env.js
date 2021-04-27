@@ -17,23 +17,28 @@ if (fs.existsSync(envFilePath)) {
   })
 }
 
-module.exports = (key, defaultValue) => {
-  const envValue = process.env[key]
-  if (!envValue) {
+const formatValue = (value, defaultValue = null) => {
+  if (!value) {
     return defaultValue || undefined
   }
 
-  if (["true", "false"].includes(envValue)) {
-    return envValue === "true"
+  if (["true", "false"].includes(value)) {
+    return value === "true"
   }
 
-  if (typeof envValue === "string" && /^\d+$/.test(envValue)) {
-    return Number(envValue)
+  if (typeof value === "string" && /^\d+$/.test(value)) {
+    return Number(value)
   }
 
-  if (typeof envValue === "string" && envValue.includes(",")) {
-    return envValue.split(",").map(i => i.trim())
+  if (typeof value === "string" && value.includes(",")) {
+    return value.split(",").map(i => i.trim())
   }
 
-  return envValue
+  return value
 }
+
+module.exports = (key, defaultValue = null) => {
+  const envValue = process.env[key]
+  return formatValue(envValue, defaultValue)
+}
+module.exports.formatValue = formatValue

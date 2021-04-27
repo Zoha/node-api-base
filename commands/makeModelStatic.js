@@ -5,10 +5,11 @@ const pluralize = require("pluralize")
 const chalk = require("chalk")
 const formatCode = require("@utils/formatCode")
 const mustache = require("mustache")
+const { spawnSync: execCommand } = require("child_process")
 
 module.exports = {
-  command: "make:method <modelName> <methodName>",
-  async action(modelName, methodName) {
+  command: "make:modelStatic <modelName> <staticName>",
+  async action(modelName, staticName) {
     modelName = pascalCase(pluralize.singular(modelName))
 
     const modelPath = path.join(__dirname, `../models/${modelName}.js`)
@@ -18,34 +19,36 @@ module.exports = {
       return process.exit(0)
     }
 
-    methodName = camelCase(methodName)
+    staticName = camelCase(staticName)
 
-    const methodFilePath = path.join(
+    const staticFilePath = path.join(
       __dirname,
-      `../models/${camelCase(modelName)}/methods/${methodName}.js`
+      `../models/${camelCase(modelName)}/statics/${staticName}.js`
     )
 
-    if (fs.existsSync(methodFilePath)) {
-      console.info(chalk.red("method file already exists"))
+    if (fs.existsSync(staticFilePath)) {
+      console.info(chalk.red("static file already exists"))
       return process.exit(0)
     }
 
-    const methodFileTemplatePath = path.join(
+    const staticFileTemplatePath = path.join(
       __dirname,
-      "../assets/templates/mustache/methodFile.mustache"
+      "../assets/templates/mustache/staticFile.mustache"
     )
 
     fs.writeFileSync(
-      methodFilePath,
+      staticFilePath,
       await formatCode(
-        mustache.render(fs.readFileSync(methodFileTemplatePath, "utf-8"), {
+        mustache.render(fs.readFileSync(staticFileTemplatePath, "utf-8"), {
           Model: modelName,
           model: camelCase(modelName)
         })
       )
     )
 
-    console.info(chalk.green("method file created"))
+    execCommand("node", ["update:model", modelName])
+
+    console.info(chalk.green("static file created"))
     process.exit()
   }
 }

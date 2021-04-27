@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const Schema = require("mongoose").Schema
 const loadModelStatics = require("@utils/loadModelStatics")
 const loadModelMethods = require("@utils/loadModelMethods")
+const loadFilesIn = require("@utils/loadFilesIn")
 
 // eslint-disable-next-line no-unused-vars
 const {{ model }}ModelProperties = require("./{{ model }}/{{ model }}ModelProperties")
@@ -11,6 +12,7 @@ const {{ model }}Schema = new Schema({
 }, { timestamps: true })
 
 
+loadFilesIn(__dirname, "{{ model }}/middleware" , {data: [Schema], optional: true})
 loadModelMethods({{ model }}Schema, __dirname, "{{ model }}/methods")
 loadModelStatics({{ model }}Schema, __dirname, "{{ model }}/statics")
 

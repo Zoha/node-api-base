@@ -5,12 +5,13 @@ const { camelCase } = require("change-case")
 const chalk = require("chalk")
 const lodash = require("lodash")
 const formatCode = require("@utils/formatCode")
+const { formatValue } = require("@utils/env")
 
 const envFilePath = path.join(__dirname, "../.env")
 const envExampleFilePath = path.join(__dirname, "../.env.example")
 
 module.exports = {
-  command: "rewrite-configs",
+  command: "update:configs",
   options: [],
   async action() {
     let envFileContent = ""
@@ -32,18 +33,15 @@ module.exports = {
     )
 
     configs = configs.map(config => {
-      if (["true", "false"].includes(config.value)) {
-        config.value = config.value === "true"
-      }
-
-      if (typeof config.value === "string" && /^\d+$/.test(config.value)) {
-        config.value = Number(config.value)
-      }
-      config.originalKey = config.key
-      config.key = camelCase(config.key)
+      config.value = formatValue(config.value)
       if (typeof config.value === "string") {
         config.value = `"${config.value}"`
+      } else if (typeof config.value === "object") {
+        config.value = JSON.stringify(config.value)
       }
+
+      config.originalKey = config.key
+      config.key = camelCase(config.key)
       return config
     })
 

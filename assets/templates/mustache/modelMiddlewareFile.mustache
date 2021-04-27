@@ -1,0 +1,11 @@
+/**
+ * @param {import("mongoose").Schema} schema
+ */
+module.exports = schema => {
+  schema.post(
+    "save",
+    /** @this { import("../../{{Model}}").{{model}} } */ async function() {
+      // do something
+    }
+  )
+}

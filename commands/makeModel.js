@@ -39,7 +39,8 @@ module.exports = {
     const modelDirectories = [
       path.join(__dirname, "../models/", data.model),
       path.join(__dirname, "../models/", data.model, "statics"),
-      path.join(__dirname, "../models/", data.model, "methods")
+      path.join(__dirname, "../models/", data.model, "methods"),
+      path.join(__dirname, "../models/", data.model, "middleware")
     ]
 
     if (fs.existsSync(modelFilePath) || fs.existsSync(modelPropertiesFilePath)) {
