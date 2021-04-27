@@ -6,6 +6,7 @@
     "hgetall",
     "hmset",
     "hset",
+    "mongodb",
     "printf",
     "ucfirst",
     "validatorjs"
