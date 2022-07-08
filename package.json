@@ -34,7 +34,7 @@
     "lodash": "^4.17.19",
     "mkdirp": "^1.0.4",
     "module-alias": "^2.2.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "mongoose": "^5.9.22",
     "morgan": "^1.10.0",
     "mustache": "^4.1.0",
